@@ -1,0 +1,23 @@
+[
+    {
+        "firstName": "Max",
+        "lastName": "Manthey",
+        "username": "max",
+        "password": "user123",
+        "admin": true
+    },
+    {
+        "firstName": "Luke",
+        "lastName": "Skywalker",
+        "username": "chosen",
+        "password": "notmydad!",
+        "admin": false
+    },
+    {
+        "firstName": "Gandalf",
+        "lastName": "TheGrey",
+        "username": "balrog",
+        "password": "!pass",
+        "admin": true
+    }
+]
