@@ -1,5 +1,5 @@
 const prompt = require('prompt-sync')();
-const existingUser = require('./existingUser.json')
+const existingUser = require('./data/existingUser.json')
 
 module.exports = function () {
     const res = getLoginInput();
