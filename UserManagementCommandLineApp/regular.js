@@ -6,7 +6,6 @@ module.exports = function (userObj) {
     user = userObj
     printNewLines(3)
     console.log('Welcome ' + user.username)
-    printNewLines(1)
     mainFunctionality()
 }
 
@@ -14,6 +13,7 @@ module.exports = function (userObj) {
 const mainFunctionality = () => {
     const possibleOptions = [1,2,3,4]
     
+    printNewLines(1)
     console.log('What do you want to do?')
     console.log('(1) Rent a book')
     console.log('(2) Return a book')
