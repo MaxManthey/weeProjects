@@ -1,19 +1,20 @@
 const prompt = require('prompt-sync')();
 
 let existingUser = require('./data/existingUser.json')
+const mainFunctionality = require('./mainFunctionality')
 
 let user = undefined
 
-module.exports = function (user) {
-    user = user
+module.exports = function (userObj) {
+    user = userObj
     printNewLines(3)
     console.log('Welcome ' + user.username)
     console.log('You are logged in as admin')
-    mainFunctionality()
+    availableOptions()
 }
 
 
-const mainFunctionality = () => {
+const availableOptions = () => {
     const possibleOptions = [1,2,3,4,5,6]
     
     printNewLines(1)
@@ -29,13 +30,14 @@ const mainFunctionality = () => {
     if(possibleOptions.includes(choosenOption)) {
         switch(choosenOption) {
             case 1:
-                rentABook()
+                mainFunctionality.rentABook(user)
+                availableOptions()
                 break;
             case 2:
-                returnABook()
+                mainFunctionality.returnABook(user)
                 break;
             case 3:
-                accountSettings()
+                mainFunctionality.accountSettings(user)
                 break;
             case 4:
                 createUser()
@@ -44,45 +46,21 @@ const mainFunctionality = () => {
                 deleteUser()
                 break;
             case 6:
-                exitApp()
+                mainFunctionality.exitApp()
                 break;
         }
     } else {
         printNewLines(1)
         console.log("Input was not an option")
         printNewLines(3)
-        mainFunctionality()
+        availableOptions()
     }
 }
 
-
-const rentABook = () => {
-    console.log('Rent book')
-    mainFunctionality()
-}
-
-
-const returnABook = () => {
-    console.log('Return a book')
-    mainFunctionality()
-}
-
-
-const accountSettings = () => {
-    console.log('Account settings')
-    mainFunctionality()
-}
 
 const createUser = () => {
-    test = {
-        "firstName": "Max",
-        "lastName": "Manthey",
-        "username": "max",
-        "password": "user123",
-        "admin": true
-    }
     printNewLines(2)
-    console.log('Create a new User')
+    console.log('--- Create a new User ---')
     const firstName = prompt('First name: ')
     const lastName = prompt('Last name: ')
     const username = prompt('Username: ')
@@ -106,10 +84,13 @@ const createUser = () => {
         })
         printNewLines(1)
         console.log("User has been created!")
-        mainFunctionality()
+        availableOptions()
     }
 }
+
+
 const deleteUser = () => {
+    //TODO if user == own account => log out
     printNewLines(2)
     console.log("--- Current users ---")
     for(let i = 0; i < existingUser.length; ++i) {
@@ -131,16 +112,8 @@ const deleteUser = () => {
     } else {
         printNewLines(1)
         console.log("No user has been deleted!")
-        mainFunctionality()
+        availableOptions()
     }
-}
-
-
-const exitApp = () => {
-    printNewLines(2)
-    console.log('Goodbye!')
-    printNewLines(2)
-    process.exit(1)
 }
 
 
