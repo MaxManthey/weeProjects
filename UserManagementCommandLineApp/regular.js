@@ -27,12 +27,15 @@ const availableOptions = () => {
         switch(choosenOption) {
             case 1:
                 mainFunctionality.rentABook(user)
+                availableOptions()
                 break;
             case 2:
                 mainFunctionality.returnABook(user)
+                availableOptions()
                 break;
             case 3:
                 mainFunctionality.accountSettings(user)
+                availableOptions()
                 break;
             case 4:
                 mainFunctionality.exitApp()

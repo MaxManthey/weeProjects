@@ -1,18 +1,74 @@
 const prompt = require('prompt-sync')();
 
+let existingUser = require('./data/existingUser.json')
+let allBooks = require('./data/books.json')
+
 const rentABook = (user) => {
     printNewLines(2)
     console.log('--- Rent book ---')
-    //print available books
-    const choosenBook = prompt("Which book would you like to rent? ")
+    const rentedBooks = existingUser.reduce((books,usr) => books.concat(usr.booksRent),[])
+    let availableBookCount = 0
+    let availableBooks = []
+    for(let i = 0; i < allBooks.length; ++i) {
+        if(!rentedBooks.includes(i)) {
+            ++availableBookCount
+            availableBooks.push([availableBookCount, i])
+            console.log("(" + availableBookCount + ")\ttitle: " + allBooks[i].title)
+            console.log("\tauthor: " + allBooks[i].author)
+        }
+    }
+    if(availableBookCount == 0) {
+        console.log("Sorry but there are no books available right now.")
+        return
+    }
+    console.log("(" + (availableBookCount+1) + ")\tReturn")
+    const choosenBook = parseInt(prompt("Which book would you like to rent? "))
+    if(choosenBook < 1 || choosenBook > availableBookCount) {
+        if(choosenBook != availableBookCount+1) {
+            console.log("Selected option was not viable.")
+        }
+        return
+    }
+    for(usr of existingUser) {
+        if(usr == user) {
+            usr.booksRent.push(availableBooks[choosenBook-1][1])
+        }
+    }
+    console.log("Book has been rented succesfully!")
 }
 
 
 const returnABook = (user) => {
     printNewLines(2)
     console.log('--- Return a book ---')
-    //print borrowed books
+    availableBookCount = 0
+    let availableBooks = []
+    for(let i = 0; i < allBooks.length; ++i) {
+        if(user.booksRent.includes(i)) {
+            ++availableBookCount
+            availableBooks.push(i)
+            console.log("(" + availableBookCount + ")\ttitle: " + allBooks[i].title)
+            console.log("\tauthor: " + allBooks[i].author)
+        }
+    }
+    if(availableBookCount == 0) {
+        console.log("You don't have any books to return.")
+        return
+    }
+    console.log("(" + (availableBookCount+1) + ")\tReturn")
     const choosenBook = prompt("Which book would you like to return? ")
+    if(choosenBook < 1 || choosenBook > availableBookCount) {
+        if(choosenBook != availableBookCount+1) {
+            console.log("Selected option was not viable.")
+        }
+        return
+    }
+    for(usr of existingUser) {
+        if(usr == user) {
+            usr.booksRent = usr.booksRent.filter(book => book != availableBooks[choosenBook-1])
+        }
+    }
+    console.log("Book has been returned succesfully!")
 }
 
 
@@ -84,5 +140,6 @@ const printNewLines = (amount) => {
 
 exports.rentABook = rentABook
 exports.returnABook = returnABook
+exports.accountSettings = accountSettings
 exports.exitApp = exitApp
 exports.printNewLines = printNewLines
