@@ -35,15 +35,19 @@ const availableOptions = () => {
                 break;
             case 2:
                 mainFunctionality.returnABook(user)
+                availableOptions()
                 break;
             case 3:
                 mainFunctionality.accountSettings(user)
+                availableOptions()
                 break;
             case 4:
                 createUser()
+                availableOptions()
                 break;
             case 5:
                 deleteUser()
+                availableOptions()
                 break;
             case 6:
                 mainFunctionality.exitApp()
@@ -72,7 +76,7 @@ const createUser = () => {
         if(retry == "y") {
             createUser()
         } else {
-            mainFunctionality()
+            return
         }
     } else {
         existingUser.push({
@@ -80,17 +84,17 @@ const createUser = () => {
             "lastName": lastName,
             "username": username,
             "password": password,
-            "admin": admin=="y"?true:false
+            "admin": admin=="y"?true:false,
+            "booksRent": []
         })
         printNewLines(1)
         console.log("User has been created!")
-        availableOptions()
     }
 }
 
 
 const deleteUser = () => {
-    //TODO if user == own account => log out
+    //TODO if user == own account => double check => log out
     printNewLines(2)
     console.log("--- Current users ---")
     for(let i = 0; i < existingUser.length; ++i) {
@@ -102,17 +106,17 @@ const deleteUser = () => {
         if(choosenOption == (existingUser.length+1)) {
             printNewLines(1)
             console.log("No user has been deleted!")
-            mainFunctionality()
+            return
         } else {
             console.log("User " + existingUser[choosenOption-1].username + " has been deleted!")
             existingUser = existingUser.filter(u => u != existingUser[choosenOption-1])
             printNewLines(1)
-            mainFunctionality()
+            return
         }
     } else {
         printNewLines(1)
         console.log("No user has been deleted!")
-        availableOptions()
+        return
     }
 }
 

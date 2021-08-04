@@ -4,20 +4,23 @@
         "lastName": "Manthey",
         "username": "max",
         "password": "user123",
-        "admin": true
+        "admin": true,
+        "booksRent": [0,6,9]
     },
     {
         "firstName": "Luke",
         "lastName": "Skywalker",
         "username": "chosen",
         "password": "notmydad!",
-        "admin": false
+        "admin": false,
+        "booksRent": [3,5]
     },
     {
         "firstName": "Gandalf",
         "lastName": "TheGrey",
         "username": "balrog",
         "password": "!pass",
-        "admin": true
+        "admin": true,
+        "booksRent": [2]
     }
 ]
