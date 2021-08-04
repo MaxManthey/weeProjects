@@ -1,16 +1,18 @@
 const prompt = require('prompt-sync')();
 
+const mainFunctionality = require('./mainFunctionality')
+
 let user = undefined
 
 module.exports = function (userObj) {
     user = userObj
     printNewLines(3)
     console.log('Welcome ' + user.username)
-    mainFunctionality()
+    availableOptions()
 }
 
 
-const mainFunctionality = () => {
+const availableOptions = () => {
     const possibleOptions = [1,2,3,4]
     
     printNewLines(1)
@@ -24,52 +26,25 @@ const mainFunctionality = () => {
     if(possibleOptions.includes(choosenOption)) {
         switch(choosenOption) {
             case 1:
-                rentABook()
+                mainFunctionality.rentABook(user)
                 break;
             case 2:
-                returnABook()
+                mainFunctionality.returnABook(user)
                 break;
             case 3:
-                accountSettings()
+                mainFunctionality.accountSettings(user)
                 break;
             case 4:
-                exitApp()
+                mainFunctionality.exitApp()
                 break;
         }
     } else {
         printNewLines(1)
         console.log("Input was not an option")
         printNewLines(3)
-        mainFunctionality()
+        availableOptions()
     }
 }
-
-
-const rentABook = () => {
-    console.log('Rent book')
-    mainFunctionality()
-}
-
-
-const returnABook = () => {
-    console.log('Return a book')
-    mainFunctionality()
-}
-
-
-const accountSettings = () => {
-    console.log('Account settings')
-    mainFunctionality()
-}
-
-
-const exitApp = () => {
-    printNewLines(2)
-    console.log('Goodbye!')
-    printNewLines(2)
-    process.exit(1)
-}
-
 
 const printNewLines = (amount) => {
     let toPrint = ''
