@@ -15,7 +15,7 @@ module.exports = function (userObj) {
 
 
 const availableOptions = () => {
-    const possibleOptions = [1,2,3,4,5,6,7]
+    const possibleOptions = [1,2,3,4,5,6]
     
     printNewLines(1)
     console.log('What do you want to do?')
@@ -24,8 +24,7 @@ const availableOptions = () => {
     console.log('(3) Account Settings')
     console.log('(4) Create New User')
     console.log('(5) Delete a User')
-    console.log('(6) Log out')
-    console.log('(7) Exit App')
+    console.log('(6) Exit App')
     
     const choosenOption = parseInt(prompt('Please enter a number: '));
     if(possibleOptions.includes(choosenOption)) {
@@ -47,7 +46,10 @@ const availableOptions = () => {
                 availableOptions()
                 break;
             case 5:
-                deleteUser()
+                const endApp = deleteUser(user)
+                if(endApp) {
+                    mainFunctionality.exitApp()
+                }
                 availableOptions()
                 break;
             case 6:
@@ -94,7 +96,7 @@ const createUser = () => {
 }
 
 
-const deleteUser = () => {
+const deleteUser = (user) => {
     //TODO if user == own account => double check => log out
     printNewLines(2)
     console.log("--- Current users ---")
@@ -107,17 +109,25 @@ const deleteUser = () => {
         if(choosenOption == (existingUser.length+1)) {
             printNewLines(1)
             console.log("No user has been deleted!")
-            return
+            return false
         } else {
+            let deleteOwnAccount = false
+            if(user == existingUser[choosenOption-1]) {
+                const deleteAccountChoice = prompt("You are about to delete your own account, continue?(y/n) ")
+                if(deleteAccountChoice != "y") {
+                    return false
+                }
+                deleteOwnAccount = true
+            }
             console.log("User " + existingUser[choosenOption-1].username + " has been deleted!")
             existingUser = existingUser.filter(u => u != existingUser[choosenOption-1])
             printNewLines(1)
-            return
+            return deleteOwnAccount
         }
     } else {
         printNewLines(1)
         console.log("No user has been deleted!")
-        return
+        return false
     }
 }
 

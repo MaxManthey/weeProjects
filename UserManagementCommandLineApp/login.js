@@ -29,7 +29,6 @@ const checkCredentials = (username, password) => {
         return {}
     }
     if(user[0].password != password) {
-        console.log(user, user[0].password)
         console.log("Wrong password")
         return {}
     }

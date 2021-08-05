@@ -13,15 +13,14 @@ module.exports = function (userObj) {
 
 
 const availableOptions = () => {
-    const possibleOptions = [1,2,3,4,5]
+    const possibleOptions = [1,2,3,4]
     
     printNewLines(1)
     console.log('What do you want to do?')
     console.log('(1) Rent a book')
     console.log('(2) Return a book')
     console.log('(3) Account settings')
-    console.log('(4) Log out')
-    console.log('(5) Exit App')
+    console.log('(4) Exit App')
     
     const choosenOption = parseInt(prompt('Please enter a number: '));
     if(possibleOptions.includes(choosenOption)) {

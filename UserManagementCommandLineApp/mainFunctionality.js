@@ -132,6 +132,7 @@ const changePassword = (user) => {
                     usr.password = newPassword
                 }
             }
+            console.log("Password has been changed succesfully")
         }
     }
 }
