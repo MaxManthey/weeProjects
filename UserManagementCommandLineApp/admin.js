@@ -8,14 +8,14 @@ let user = undefined
 module.exports = function (userObj) {
     user = userObj
     printNewLines(3)
-    console.log('Welcome ' + user.username)
+    console.log('Welcome ' + user.firstName)
     console.log('You are logged in as admin')
     availableOptions()
 }
 
 
 const availableOptions = () => {
-    const possibleOptions = [1,2,3,4,5,6]
+    const possibleOptions = [1,2,3,4,5,6,7]
     
     printNewLines(1)
     console.log('What do you want to do?')
@@ -24,7 +24,8 @@ const availableOptions = () => {
     console.log('(3) Account Settings')
     console.log('(4) Create New User')
     console.log('(5) Delete a User')
-    console.log('(6) Exit')
+    console.log('(6) Log out')
+    console.log('(7) Exit App')
     
     const choosenOption = parseInt(prompt('Please enter a number: '));
     if(possibleOptions.includes(choosenOption)) {

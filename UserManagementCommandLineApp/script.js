@@ -3,6 +3,7 @@ const prompt = require('prompt-sync')();
 const login = require('./login')
 const regular = require('./regular');
 const admin = require('./admin');
+const mainFunctionality = require('./mainFunctionality')
 
 const asciiBook = `
       __...--~~~~~-._   _.-~~~~~--...__
@@ -27,7 +28,7 @@ if(Object.keys(user).length != 0) {
         regular(user)
     }
 } else {
-    console.log("\n\nGoodbye!\n\n")
+    mainFunctionality.exitApp()
 }
 
 
