@@ -7,20 +7,21 @@ let user = undefined
 module.exports = function (userObj) {
     user = userObj
     printNewLines(3)
-    console.log('Welcome ' + user.username)
+    console.log('Welcome ' + user.firstName)
     availableOptions()
 }
 
 
 const availableOptions = () => {
-    const possibleOptions = [1,2,3,4]
+    const possibleOptions = [1,2,3,4,5]
     
     printNewLines(1)
     console.log('What do you want to do?')
     console.log('(1) Rent a book')
     console.log('(2) Return a book')
     console.log('(3) Account settings')
-    console.log('(4) Exit')
+    console.log('(4) Log out')
+    console.log('(5) Exit App')
     
     const choosenOption = parseInt(prompt('Please enter a number: '));
     if(possibleOptions.includes(choosenOption)) {

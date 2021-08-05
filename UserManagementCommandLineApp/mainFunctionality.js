@@ -97,21 +97,52 @@ const changeUserData = (user) => {
     console.log("--- Change User Data ---")
     const firstName = prompt("Please enter your first name: ")
     const lastName = prompt("Please enter your last name: ")
+    for(usr of existingUser) {
+        if(usr == user) {
+            usr.firstName = firstName
+            usr.lastName = lastName
+        }
+    }
+    console.log("User data changed succesfully")
 }
 const changePassword = (user) => {
     printNewLines(2)
     console.log("--- Change Password ---")
     const oldPassword = prompt("Please enter your current password: ")
-    const newPassword = prompt("Please enter your new password: ")
-    const repeatPassword = prompt("Please repeat your new password: ")
-
+    if(user.password != oldPassword) {
+        const retry = prompt("Password was incorrect, try again?(y/n)")
+        if(retry == "y") {
+            changePassword(user)
+        } else {
+            return
+        }
+    } else {
+        const newPassword = prompt("Please enter your new password: ")
+        const repeatPassword = prompt("Please repeat your new password: ")
+        if(newPassword != repeatPassword) {
+            const retry = prompt("Passwords didn't match, try again?(y/n)")
+            if(retry == "y") {
+                changePassword(user)
+            } else {
+                return
+            }
+        } else {
+            for(usr of existingUser) {
+                if(usr == user) {
+                    usr.password = newPassword
+                }
+            }
+        }
+    }
 }
 const deleteAccount = (user) => {
     //TODO Log out
     printNewLines(2)
     console.log("--- Delete your Account ---")
     const confirmDeletion = prompt("Do you really want to delete your account?(y/n) ")
-
+    if(confirmDeletion == "y") {
+        existingUser = existingUser.filter(usr => usr != user)
+    }
 }
 
 
