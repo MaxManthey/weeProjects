@@ -46,7 +46,15 @@ export default {
   },
   methods: {
     createUser() {
-      console.log("test");
+      if (this.username != "Papa" || this.email == "papa@test.com") {
+        this.$router.push("/alarm-clock");
+      } else {
+        this.$buefy.toast.open({
+          duration: 4000,
+          message: `Username or email is already being used`,
+          type: "is-danger",
+        });
+      }
     },
   },
 };
