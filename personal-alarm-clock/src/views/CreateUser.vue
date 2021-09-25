@@ -46,14 +46,26 @@ export default {
   },
   methods: {
     createUser() {
-      if (this.username != "Papa" || this.email == "papa@test.com") {
-        this.$router.push("/alarm-clock");
-      } else {
+      if (
+        this.firstName == "" ||
+        this.lastName == "" ||
+        this.username == "" ||
+        this.email == "" ||
+        this.password == ""
+      ) {
+        this.$buefy.toast.open({
+          duration: 4000,
+          message: `Please enter a value in every field`,
+          type: "is-danger",
+        });
+      } else if (this.username == "Papa" || this.email == "papa@test.com") {
         this.$buefy.toast.open({
           duration: 4000,
           message: `Username or email is already being used`,
           type: "is-danger",
         });
+      } else {
+        this.$router.push("/alarm-clock");
       }
     },
   },

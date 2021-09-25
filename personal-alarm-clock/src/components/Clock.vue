@@ -1,5 +1,5 @@
 <template>
-  <div>Alarm Clock</div>
+  <div>Display time</div>
 </template>
 
 <script>
