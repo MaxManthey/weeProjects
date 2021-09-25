@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -33,8 +34,19 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      setUser: "setUser", // map `this.add()` to `this.$store.dispatch('increment')`
+    }),
     checkLogin() {
       if (this.username == "Papa" && this.password == "123") {
+        const papaUser = {
+          firstName: "Andreas",
+          lastName: "Manthey",
+          username: "Papa",
+          email: "papa@test.com",
+          password: "123",
+        };
+        this.setUser(papaUser);
         this.$router.push("/alarm-clock");
       } else {
         this.$buefy.toast.open({
