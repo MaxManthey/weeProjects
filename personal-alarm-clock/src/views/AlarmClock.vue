@@ -1,21 +1,10 @@
 <template>
   <div>
     <h1 class="is-size-2">Hi {{ firstName }}</h1>
-    <Clock />
+    <Clock class="clock-wrapper" />
   </div>
   <!-- 
-    - display current time
-    - set alarm clock
-    - play sound when clock strikes
-    - checkbox to make alarm clock daily
-    - Add Logout
-    - Add localStorage
-    - Work on darkmode
-    - Add Acounts page
-      - change name
-      - change password
-      - change email
-      - delete account
+    
   -->
 </template>
 
@@ -36,4 +25,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.clock-wrapper {
+  margin-top: 7%;
+}
+</style>
