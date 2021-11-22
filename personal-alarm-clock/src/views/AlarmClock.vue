@@ -2,6 +2,7 @@
   <div>
     <h1 class="is-size-2">Hi {{ firstName }}</h1>
     <Clock class="clock-wrapper" />
+    <SetAlarm />
   </div>
   <!-- 
     
@@ -10,9 +11,11 @@
 
 <script>
 import Clock from "@/components/Clock.vue";
+import SetAlarm from "@/components/SetAlarm.vue";
 export default {
   components: {
     Clock,
+    SetAlarm,
   },
   data() {
     return {
@@ -27,6 +30,7 @@ export default {
 
 <style scoped>
 .clock-wrapper {
-  margin-top: 7%;
+  margin-top: 3%;
+  margin-bottom: 3%;
 }
 </style>
